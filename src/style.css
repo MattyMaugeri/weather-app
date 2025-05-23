@@ -1,0 +1,110 @@
+:root {
+    
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.canvas {
+    border: 2px solid black ;
+    width: 1200px;
+    height: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#search-form {
+    width: 400px;
+    margin: 1rem;
+    position: relative;
+    border: none;
+}
+
+#search-form input {
+    padding: 0.5rem;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+}
+
+#search-form button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border: none;
+    background: none;
+    font-size: 16px;
+}
+
+
+
+
+
+.basic-info {
+    width: 400px;
+    height: 120px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.basic-info > * {
+    flex: 1;
+    font-size: 24px;
+
+}
+
+.basic-info > :last-child {
+    font-size: 16px;
+}
+
+
+
+
+
+
+
+.detailed-content {
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 900px;
+    height: 400px;
+
+    display: grid;
+    grid-template: 0.5fr 0.3fr 0.3fr / 1fr 1fr 1fr;
+}
+
+.detailed-content > div {
+    border: 1px solid grey;
+}
+
+.forecast {
+    display: grid;
+    grid-template-rows: repeat(1fr, 7);
+    padding: 0.4rem;
+}
+
+.forecast-days {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.timelapse {
+    grid-area: 1 / 2 / 2 / -1;
+}
