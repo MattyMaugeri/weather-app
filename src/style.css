@@ -84,7 +84,7 @@ body {
     height: 500px;
 
     display: grid;
-    grid-template: 0.5fr 0.3fr 0.3fr / 1fr 1fr 1fr;
+    grid-template: 1fr 0.5fr 0.5fr / 1fr 1fr 1fr;
 }
 
 .detailed-content>div {
@@ -130,7 +130,7 @@ body {
     /* Start progress from top */
 }
 
-.background-ring, 
+.background-ring,
 .progress-ring {
     fill: none;
     stroke-width: 10;
@@ -143,8 +143,6 @@ body {
 .progress-ring {
     stroke: #727171;
     stroke-linecap: round;
-    stroke-dasharray: 300;
-    /* 2πr where r=50 */
     stroke-dashoffset: 0;
     transition: stroke-dashoffset 0.5s ease;
 }
@@ -156,6 +154,64 @@ body {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+
+.wind {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.wind-ring-svg {
+    transform: rotate(-90deg);
+    /* progress starts from top */
+}
+
+.wind-ring-bg,
+.wind-ring-progress {
+    fill: none;
+    stroke-width: 10;
+    cx: 60;
+    cy: 60;
+    r: 50;
+}
+
+.wind-ring-bg {
+    stroke: #e0e0e0;
+}
+
+.wind-ring-progress {
+    stroke: #727171;
+    transition: stroke-dashoffset 0.5s ease;
+    stroke-linecap: round;
+}
+
+.wind-values {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#degrees {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+#direction {}
+
+.wind-speed {
+    margin-top: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
 }
 
 .sunrise {

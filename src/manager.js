@@ -17,9 +17,11 @@ export async function retrieveWeatherData(location) {
         forecast: data.days,
         timelapse: data.days,
         humidity: data.currentConditions.humidity,
-        cloudcover: data.currentConditions.cloudcover,
         uv: data.currentConditions.uvindex,
-        wind: data.currentConditions.windspeed,
+        wind: {
+            speed: data.currentConditions.windspeed,
+            direction: data.currentConditions.winddir
+        },
         visibility: data.currentConditions.visibility,
         pressure: data.currentConditions.pressure
     }
@@ -36,4 +38,13 @@ export function formatLocation(address) {
 // Converts '00:00:00' --> '00:00'
 export function formatTime(time) {
     return time.slice(0, 5);
+}
+
+export function getCompassDirection(degree) {
+    const directions = [
+        'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'
+    ];
+
+    const index = Math.round(degree / 45) % 8;
+    return directions[index];
 }

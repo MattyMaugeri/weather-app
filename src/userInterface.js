@@ -9,14 +9,13 @@ const descriptionDiv = document.querySelector('.description');
 // Detailed Content
 const forecastDiv = document.querySelector('.forecast');
 const timelapseDiv = document.querySelector('.timelapse');
-const humidityDiv = document.querySelector('.humidity-value')
-
 
 function renderAll(data) {
     displayBasicInfo(data);
     displayForecast(data.forecast);
     displayTimelapse(data);
     displayHumidity(data.humidity);
+    displayWind(data.wind);
 
 }
 
@@ -142,6 +141,27 @@ function displayHumidity(data) {
     circle.style.strokeDasharray = circumference;
     circle.style.strokeDashoffset = offset;
     value.textContent = `${humidityPercent}%`;
+}
+
+function displayWind(data) {
+    const circle = document.querySelector('.wind-ring-progress');
+    const directionText = document.getElementById('direction');
+    const degreeText = document.getElementById('degrees');
+    const speedText = document.querySelector('.wind-speed');
+
+    const radius = 50;
+    const circumference = 2 * Math.PI * radius;
+
+    const percentage = data.direction / 360; // % of the circle to show
+    const offset = circumference * (1 - percentage);
+
+    circle.style.strokeDasharray = circumference;
+    circle.style.strokeDashoffset = offset;
+
+    degreeText.innerHTML = data.direction + ' \u00B0';
+    directionText.textContent = Manager.getCompassDirection(data.direction);
+    speedText.textContent = `${data.speed} km/h`;
+
 }
 
 

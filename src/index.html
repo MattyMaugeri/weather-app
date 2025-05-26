@@ -40,7 +40,27 @@
                 <div class="humidity-value"></div>
             </div>
 
-            <div class="wind container"></div>
+            <div class="wind container">
+                <div class="headings">
+                    Wind
+                </div>
+                <svg class="wind-ring-svg" width="120" height="120">
+                    <defs>
+                        <linearGradient id="wind-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%"/>
+                            <stop offset="100%"/>
+                        </linearGradient>
+                    </defs>
+                    <circle class="wind-ring-bg" cx="60" cy="60" r="50" />
+                    <circle class="wind-ring-progress" cx="60" cy="60" r="50" />
+                </svg>
+                <div class="wind-speed"></div>
+                <div class="wind-values">
+                    <span id="degrees"></span>
+                    <span id="direction"></span>
+                </div>
+
+            </div>
 
             <div class="pressure container"></div>
 
