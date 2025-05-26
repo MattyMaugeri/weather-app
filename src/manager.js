@@ -17,13 +17,12 @@ export async function retrieveWeatherData(location) {
         forecast: data.days,
         timelapse: data.days,
         humidity: data.currentConditions.humidity,
-        uv: data.currentConditions.uvindex,
         wind: {
             speed: data.currentConditions.windspeed,
             direction: data.currentConditions.winddir
         },
-        visibility: data.currentConditions.visibility,
-        pressure: data.currentConditions.pressure
+        pressure: data.currentConditions.pressure,
+        uv: data.currentConditions.uvindex,
     }
 }
 

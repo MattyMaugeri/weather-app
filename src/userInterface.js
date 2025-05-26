@@ -10,12 +10,16 @@ const descriptionDiv = document.querySelector('.description');
 const forecastDiv = document.querySelector('.forecast');
 const timelapseDiv = document.querySelector('.timelapse');
 
+const pressureValue = document.querySelector('.pressure-value');
+const pressureMeasurement = document.querySelector('.pressure-measurement');
+
 function renderAll(data) {
     displayBasicInfo(data);
     displayForecast(data.forecast);
     displayTimelapse(data);
     displayHumidity(data.humidity);
     displayWind(data.wind);
+    displayPressure(data.pressure);
 
 }
 
@@ -162,6 +166,15 @@ function displayWind(data) {
     directionText.textContent = Manager.getCompassDirection(data.direction);
     speedText.textContent = `${data.speed} km/h`;
 
+}
+
+function displayPressure(data) {
+    console.log(data);
+    
+    pressureValue.innerHTML = data;
+    pressureMeasurement.innerHTML = ' hPa/mb';
+
+    pressureValue.appendChild(pressureMeasurement);
 }
 
 

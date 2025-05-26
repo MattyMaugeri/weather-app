@@ -16,7 +16,7 @@ body {
 .canvas {
     border: 2px solid black;
     width: 1200px;
-    height: 750px;
+    height: 900px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -81,10 +81,10 @@ body {
     border: 2px solid black;
     border-radius: 5px;
     width: 900px;
-    height: 500px;
+    height: 650px;
 
     display: grid;
-    grid-template: 1fr 0.5fr 0.5fr / 1fr 1fr 1fr;
+    grid-template: 45% 27.5% 27.5% / 1fr 1fr 1fr;
 }
 
 .detailed-content>div {
@@ -93,11 +93,10 @@ body {
 
 .container {
     padding: 0.4rem;
+    height: 100%;
 }
 
-.headings {
-    align-self: flex-start;
-}
+
 
 
 
@@ -206,14 +205,32 @@ body {
     font-weight: bold;
 }
 
-#direction {}
-
 .wind-speed {
     margin-top: 8px;
     font-size: 1.2rem;
     font-weight: bold;
 }
 
+.pressure {
+    display: flex;
+    flex-direction: column;
+}
+
+.pressure-value {
+    margin-top: 40px;
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.pressure-measurement {
+    font-weight: 100;
+    font-size: 1.4rem;
+}
+
 .sunrise {
     grid-area: 3 / 2 / -1 / -1;
+}
+
+.headings {
+    align-self: flex-start;
 }
