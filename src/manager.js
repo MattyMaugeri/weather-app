@@ -7,7 +7,7 @@ export async function retrieveWeatherData(location) {
     const data = await response.json();
 
     console.log(data);
-    
+
 
     // Returns an object with only the relevant information from the API call
     return {
@@ -46,4 +46,16 @@ export function getCompassDirection(degree) {
 
     const index = Math.round(degree / 45) % 8;
     return directions[index];
+}
+
+export function calculateUvScale(index) {
+    const scale = [
+        {max: 2, value: 'Low'},
+        {max: 5, value: 'Moderate'},
+        {max: 7, value: 'High'},
+        {max: 10, value: 'Very High'},
+        {max: Infinity, value: 'Extreme'},
+    ];
+
+    return scale.find((el) => index <= el.max).value;
 }

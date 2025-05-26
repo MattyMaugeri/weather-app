@@ -47,8 +47,8 @@
                 <svg class="wind-ring-svg" width="120" height="120">
                     <defs>
                         <linearGradient id="wind-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%"/>
-                            <stop offset="100%"/>
+                            <stop offset="0%" />
+                            <stop offset="100%" />
                         </linearGradient>
                     </defs>
                     <circle class="wind-ring-bg" cx="60" cy="60" r="50" />
@@ -71,7 +71,22 @@
                 </div>
             </div>
 
-            <div class="uv-index container"></div>
+            <div class="uv container">
+                <div class="heading">
+                    UV Index
+                </div>
+
+                <div class="uv-value-container">
+                    <div class="uv-value"></div>
+                    <div class="uv-description"></div>
+                </div>
+
+
+                <div class="uv-bar-container">
+                    <div class="gradient-bar" id="uv-bar"></div>
+                    <div class="dot" id="uv-dot"></div>
+                </div>
+            </div>
 
             <div class="sunrise container"></div>
 

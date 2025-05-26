@@ -20,6 +20,7 @@ function renderAll(data) {
     displayHumidity(data.humidity);
     displayWind(data.wind);
     displayPressure(data.pressure);
+    displayUV(data.uv);
 
 }
 
@@ -169,12 +170,23 @@ function displayWind(data) {
 }
 
 function displayPressure(data) {
-    console.log(data);
-    
     pressureValue.innerHTML = data;
     pressureMeasurement.innerHTML = ' hPa/mb';
 
     pressureValue.appendChild(pressureMeasurement);
+}
+
+function displayUV(data, max = 11) {
+    const percent = Math.min(data / max, 1);
+    const dot = document.getElementById('uv-dot');
+    const containerWidth = document.querySelector('.uv-bar-container').offsetWidth;
+    const uvValue = document.querySelector('.uv-value');
+    const uvDescription = document.querySelector('.uv-description');
+
+    dot.style.left = `${percent * containerWidth}px`;
+    uvValue.textContent = data;
+    uvDescription.textContent = Manager.calculateUvScale(data);
+
 }
 
 
