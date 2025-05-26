@@ -25,19 +25,28 @@
 
         <div class="detailed-content">
 
-            <div class="forecast"></div>
+            <div class="forecast container"></div>
 
-            <div class="timelapse"></div>
+            <div class="timelapse container"></div>
 
-            <div class="uv-index"></div>
+            <div class="humidity container">
+                <div class="headings">
+                    Humidity
+                </div>
+                <svg class="humidity-ring" width="120" height="120">
+                    <circle class="background-ring" cx="60" cy="60" r="50" />
+                    <circle class="progress-ring" cx="60" cy="60" r="50" />
+                </svg>
+                <div class="humidity-value"></div>
+            </div>
 
-            <div class="humidity"></div>
+            <div class="wind container"></div>
 
-            <div class="wind"></div>
+            <div class="pressure container"></div>
 
-            <div class="air-quality"></div>
+            <div class="uv-index container"></div>
 
-            <div class="pressure"></div>
+            <div class="sunrise container"></div>
 
         </div>
     </div>

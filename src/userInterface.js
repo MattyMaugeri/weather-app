@@ -9,12 +9,14 @@ const descriptionDiv = document.querySelector('.description');
 // Detailed Content
 const forecastDiv = document.querySelector('.forecast');
 const timelapseDiv = document.querySelector('.timelapse');
+const humidityDiv = document.querySelector('.humidity-value')
 
 
 function renderAll(data) {
     displayBasicInfo(data);
     displayForecast(data.forecast);
     displayTimelapse(data);
+    displayHumidity(data.humidity);
 
 }
 
@@ -37,10 +39,9 @@ function displayForecast(data) {
         const currentDate = new Date(data.at(i).datetime);
         // Convert to day
         const currentDay = days[currentDate.getDay()];
-
         const currentTemp = data.at(i).temp;
 
-        // Create 7 divs inside forecast corresponding to their days
+        // Create 7 divs inside forecast for each day
         const div = document.createElement('div');
         div.classList.add('forecast-days');
         div.dataset.day = currentDay;
@@ -55,12 +56,7 @@ function displayForecast(data) {
         div.append(tempSpan);
 
         forecastDiv.appendChild(div);
-
     }
-
-
-
-
 }
 
 function displayTimelapse(data) {
@@ -75,14 +71,14 @@ function displayTimelapse(data) {
     const timelapseData = [];
 
     for (const hour in currentTimelapse) {
-        console.log(currentTimelapse[hour]);
+        // console.log(currentTimelapse[hour]);
         timelapseData.push({
             time: Manager.formatTime(currentTimelapse[hour].datetime),
             value: currentTimelapse[hour].temp
         });
     }
 
-    console.log(timelapseData);
+    // console.log(timelapseData);
 
     const canvas = document.createElement('canvas');
     canvas.id = 'timelapseChart';
@@ -132,11 +128,21 @@ function displayTimelapse(data) {
         }
     });
 
-
-
-
 }
 
+function displayHumidity(data) {
+    const humidityPercent = Math.round(data);
+    const circle = document.querySelector('.progress-ring');
+    const value = document.querySelector('.humidity-value');
+    const radius = 50;
+    const circumference = 2 * Math.PI * radius;
+
+    const offset = circumference - (humidityPercent / 100) * circumference;
+
+    circle.style.strokeDasharray = circumference;
+    circle.style.strokeDashoffset = offset;
+    value.textContent = `${humidityPercent}%`;
+}
 
 
 export { displayBasicInfo, renderAll }

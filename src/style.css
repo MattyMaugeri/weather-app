@@ -1,6 +1,4 @@
-:root {
-    
-}
+:root {}
 
 * {
     padding: 0;
@@ -16,9 +14,9 @@ body {
 }
 
 .canvas {
-    border: 2px solid black ;
+    border: 2px solid black;
     width: 1200px;
-    height: 700px;
+    height: 750px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,13 +61,13 @@ body {
     text-align: center;
 }
 
-.basic-info > * {
+.basic-info>* {
     flex: 1;
     font-size: 24px;
 
 }
 
-.basic-info > :last-child {
+.basic-info> :last-child {
     font-size: 16px;
 }
 
@@ -83,20 +81,29 @@ body {
     border: 2px solid black;
     border-radius: 5px;
     width: 900px;
-    height: 400px;
+    height: 500px;
 
     display: grid;
     grid-template: 0.5fr 0.3fr 0.3fr / 1fr 1fr 1fr;
 }
 
-.detailed-content > div {
+.detailed-content>div {
     border: 1px solid grey;
 }
+
+.container {
+    padding: 0.4rem;
+}
+
+.headings {
+    align-self: flex-start;
+}
+
+
 
 .forecast {
     display: grid;
     grid-template-rows: repeat(1fr, 7);
-    padding: 0.4rem;
 }
 
 .forecast-days {
@@ -107,4 +114,50 @@ body {
 
 .timelapse {
     grid-area: 1 / 2 / 2 / -1;
+}
+
+
+.humidity {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.humidity-ring {
+    transform: rotate(-90deg);
+    /* Start progress from top */
+}
+
+.background-ring, 
+.progress-ring {
+    fill: none;
+    stroke-width: 10;
+}
+
+.background-ring {
+    stroke: #e0e0e0;
+}
+
+.progress-ring {
+    stroke: #727171;
+    stroke-linecap: round;
+    stroke-dasharray: 300;
+    /* 2πr where r=50 */
+    stroke-dashoffset: 0;
+    transition: stroke-dashoffset 0.5s ease;
+}
+
+.humidity-value {
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.2rem;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.sunrise {
+    grid-area: 3 / 2 / -1 / -1;
 }
