@@ -194,7 +194,6 @@ function displayUV(data, max = 11) {
 }
 
 function displaySunrise(data) {
-    console.log(data);
     const timeDiv = document.querySelector('.time');
 
     const sunriseHeader = document.querySelector('.sunrise-header');
