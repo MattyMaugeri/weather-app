@@ -13,6 +13,8 @@ const timelapseDiv = document.querySelector('.timelapse');
 const pressureValue = document.querySelector('.pressure-value');
 const pressureMeasurement = document.querySelector('.pressure-measurement');
 
+const sunDiv = document.querySelector('.sun');
+
 function renderAll(data) {
     displayBasicInfo(data);
     displayForecast(data.forecast);
@@ -21,6 +23,7 @@ function renderAll(data) {
     displayWind(data.wind);
     displayPressure(data.pressure);
     displayUV(data.uv);
+    displaySunrise(data.sun);
 
 }
 
@@ -41,6 +44,7 @@ function displayForecast(data) {
     for (let i = 0; i < 7; i++) {
         // Convert to Date object 
         const currentDate = new Date(data.at(i).datetime);
+        
         // Convert to day
         const currentDay = days[currentDate.getDay()];
         const currentTemp = data.at(i).temp;
@@ -186,6 +190,24 @@ function displayUV(data, max = 11) {
     dot.style.left = `${percent * containerWidth}px`;
     uvValue.textContent = data;
     uvDescription.textContent = Manager.calculateUvScale(data);
+
+}
+
+function displaySunrise(data) {
+    console.log(data);
+    const timeDiv = document.querySelector('.time');
+
+    const sunriseHeader = document.querySelector('.sunrise-header');
+    const sunriseValue = document.querySelector('.sunrise-value');
+
+    const sunsetHeader = document.querySelector('.sunset-header');
+    const sunsetValue = document.querySelector('.sunset-value');
+
+    sunriseHeader.textContent = 'Sunrise';
+    sunriseValue.textContent = Manager.convertTo12Hour(data.sunrise);
+
+    sunsetHeader.textContent = 'Sunset';
+    sunsetValue.textContent = Manager.convertTo12Hour(data.sunset);
 
 }
 

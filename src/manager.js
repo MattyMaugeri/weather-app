@@ -23,6 +23,11 @@ export async function retrieveWeatherData(location) {
         },
         pressure: data.currentConditions.pressure,
         uv: data.currentConditions.uvindex,
+        sun: {
+            time: data.currentConditions.datetime,
+            sunrise: data.currentConditions.sunrise,
+            sunset: data.currentConditions.sunset,
+        }
     }
 }
 
@@ -50,12 +55,25 @@ export function getCompassDirection(degree) {
 
 export function calculateUvScale(index) {
     const scale = [
-        {max: 2, value: 'Low'},
-        {max: 5, value: 'Moderate'},
-        {max: 7, value: 'High'},
-        {max: 10, value: 'Very High'},
-        {max: Infinity, value: 'Extreme'},
+        { max: 2, value: 'Low' },
+        { max: 5, value: 'Moderate' },
+        { max: 7, value: 'High' },
+        { max: 10, value: 'Very High' },
+        { max: Infinity, value: 'Extreme' },
     ];
 
     return scale.find((el) => index <= el.max).value;
+}
+
+export function convertTo12Hour(string) {
+    const [hours, minutes] = string.split(':');
+    const date = new Date();
+    date.setHours(hours, minutes);
+
+    return date.toLocaleTimeString([], {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true
+    })
+    .replace(/^0/, '');
 }
