@@ -140,7 +140,7 @@ function displayTimelapse(data) {
 
 function displayHumidity(data) {
     const humidityPercent = Math.round(data);
-    const circle = document.querySelector('.progress-ring');
+    const circle = document.querySelector('.humidity-progress-ring');
     const value = document.querySelector('.humidity-value');
     const radius = 50;
     const circumference = 2 * Math.PI * radius;
@@ -153,9 +153,9 @@ function displayHumidity(data) {
 }
 
 function displayWind(data) {
-    const circle = document.querySelector('.wind-ring-progress');
-    const directionText = document.getElementById('direction');
-    const degreeText = document.getElementById('degrees');
+    const circle = document.querySelector('.wind-progress-ring');
+    const directionText = document.querySelector('.wind-direction');
+    const degreeText = document.querySelector('.wind-degrees');
     const speedText = document.querySelector('.wind-speed');
 
     const radius = 50;
@@ -167,7 +167,7 @@ function displayWind(data) {
     circle.style.strokeDasharray = circumference;
     circle.style.strokeDashoffset = offset;
 
-    degreeText.innerHTML = data.direction + ' \u00B0';
+    degreeText.innerHTML = data.direction + '\u00B0';
     directionText.textContent = Manager.getCompassDirection(data.direction);
     speedText.textContent = `${data.speed} km/h`;
 

@@ -15,8 +15,8 @@ body {
 
 .canvas {
     border: 2px solid black;
-    width: 1200px;
-    height: 900px;
+    width: 65rem;
+    height: 46rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -67,8 +67,9 @@ body {
 
 
 .basic-info {
-    width: 400px;
-    height: 120px;
+    width: 20rem;
+    height: 6.5rem;
+    margin-bottom: 0.6rem;
 
     display: flex;
     flex-direction: column;
@@ -93,8 +94,8 @@ body {
 
 
 .detailed-content {
-    width: 900px;
-    height: 650px;
+    width: 50rem;
+    height: 30rem;
 
     display: grid;
     grid-template: 45% 27.5% 27.5% / 1fr 1fr 1fr 1fr 1fr 1fr;
@@ -113,8 +114,9 @@ body {
     /* Safari support */
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
     /* soft shadow */
-    padding: 1rem;  
+    padding: 1rem;
 }
+
 
 
 
@@ -137,31 +139,42 @@ body {
 }
 
 
+
+
+
+
 .humidity {
     grid-area: 2 / 1 / 3 / 3;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+
+    height: 100%;
+    overflow: visible;
 }
 
-.humidity-ring {
-    transform: rotate(-90deg);
+.humidity-ring,
+.wind-ring {
     /* Start progress from top */
+    transform: rotate(-90deg);
 }
 
-.background-ring,
-.progress-ring {
+.humidity-bg-ring,
+.humidity-progress-ring,
+.wind-bg-ring,
+.wind-progress-ring {
     fill: none;
     stroke-width: 10;
 }
 
-.background-ring {
+.humidity-bg-ring,
+.wind-bg-ring {
     stroke: #e0e0e0;
 }
 
-.progress-ring {
+.humidity-progress-ring,
+.wind-progress-ring {
     stroke: #727171;
     stroke-linecap: round;
     stroke-dashoffset: 0;
@@ -172,67 +185,52 @@ body {
     position: absolute;
     font-weight: bold;
     font-size: 1.2rem;
-    top: 50%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 
 
 .wind {
     grid-area: 2 / 3 / 3 / 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: relative;
+
+    height: 100%;
+    overflow: visible;
+}
+
+.wind-svg-container {
+    position: relative;
+    height: 100%;
     display: flex;
-    flex-direction: column;
     align-items: center;
-    justify-content: center;
-}
-
-.wind-ring-svg {
-    transform: rotate(-90deg);
-    /* progress starts from top */
-}
-
-.wind-ring-bg,
-.wind-ring-progress {
-    fill: none;
-    stroke-width: 10;
-    cx: 60;
-    cy: 60;
-    r: 50;
-}
-
-.wind-ring-bg {
-    stroke: #e0e0e0;
-}
-
-.wind-ring-progress {
-    stroke: #727171;
-    transition: stroke-dashoffset 0.5s ease;
-    stroke-linecap: round;
-}
-
-.wind-values {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-#degrees {
-    font-size: 1.2rem;
-    font-weight: bold;
+    gap: 1rem;
 }
 
 .wind-speed {
-    margin-top: 8px;
-    font-size: 1.2rem;
     font-weight: bold;
+    font-size: 1rem;
 }
+
+.wind-ring {
+    height: 100%;
+}
+
+.wind-ring-values {
+    text-align: center;
+
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translate(-50%, -50%);
+}
+
 
 .pressure {
     grid-area: 2 / 5 / 3 / -1;

@@ -11,7 +11,7 @@
     <div class="canvas">
 
         <video autoplay muted loop playsinline class="background-video">
-            <source src="./backdrops/Sunny.mp4" type="video/mp4" >
+            <!-- <source src="./backdrops/Sunny.mp4" type="video/mp4" > -->
         </video>
 
         <form id="search-form">
@@ -37,32 +37,32 @@
                 <div class="headings">
                     Humidity
                 </div>
-                <svg class="humidity-ring" width="120" height="120">
-                    <circle class="background-ring" cx="60" cy="60" r="50" />
-                    <circle class="progress-ring" cx="60" cy="60" r="50" />
+                <svg class="humidity-ring" viewBox="0 0 120 120" preserveAspectRatio="xMidYMid meet" width="80" height="80">
+                    <circle class="humidity-bg-ring" cx="60" cy="60" r="50" />
+                    <circle class="humidity-progress-ring" cx="60" cy="60" r="50" />
                 </svg>
                 <div class="humidity-value"></div>
             </div>
 
             <div class="wind container">
+
                 <div class="headings">
                     Wind
                 </div>
-                <svg class="wind-ring-svg" width="120" height="120">
-                    <defs>
-                        <linearGradient id="wind-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" />
-                            <stop offset="100%" />
-                        </linearGradient>
-                    </defs>
-                    <circle class="wind-ring-bg" cx="60" cy="60" r="50" />
-                    <circle class="wind-ring-progress" cx="60" cy="60" r="50" />
-                </svg>
-                <div class="wind-speed"></div>
-                <div class="wind-values">
-                    <span id="degrees"></span>
-                    <span id="direction"></span>
+
+                <div class="wind-svg-container">
+                    <span class="wind-speed"></span>
+                    <svg class="wind-ring" viewBox="0 0 120 120" preserveAspectRatio="xMidYMid meet" width="80" height="80">
+                        <circle class="wind-bg-ring" cx="60" cy="60" r="50" />
+                        <circle class="wind-progress-ring" cx="60" cy="60" r="50" />
+                    </svg>
+
+                    <div class="wind-ring-values">
+                        <div class="wind-direction"></div>
+                        <div class="wind-degrees"></div>
+                    </div>
                 </div>
+
 
             </div>
 
