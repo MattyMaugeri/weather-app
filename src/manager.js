@@ -1,5 +1,7 @@
 import * as UI from './userInterface';
 
+let currentChart = null;
+
 export async function retrieveWeatherData(location) {
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=us&key=5CY3SLBHNE3ER7M9DNMNQ6TXB&contentType=json`;
 
@@ -29,6 +31,17 @@ export async function retrieveWeatherData(location) {
             sunset: data.currentConditions.sunset,
         }
     }
+}
+
+export function extractCityFromAddress(address) {
+    // Find position of the first comma or hyphen
+    const index = address.search(/[,\\-]/);
+
+    // If neither is found, return the whole string trimmed
+    if (index === -1) return address.trim();
+
+    // Otherwise, return the substring before the comma or hyphen
+    return address.slice(0, index).trim();
 }
 
 export function formatLocation(address) {
@@ -75,5 +88,22 @@ export function convertTo12Hour(string) {
         minute: '2-digit',
         hour12: true
     })
-    .replace(/^0/, '');
+        .replace(/^0/, '');
+}
+
+export function clearChart() {
+    if (currentChart) {
+        currentChart.destroy();
+        currentChart = null;
+    }
+
+    const existingCanvas = document.getElementById('myCanvas');
+    if (existingCanvas) {
+        existingCanvas.remove();
+    }
+
+}
+
+export function setCurrentChart(chart) {
+    currentChart = chart;
 }

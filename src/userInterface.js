@@ -13,8 +13,6 @@ const timelapseDiv = document.querySelector('.timelapse');
 const pressureValue = document.querySelector('.pressure-value');
 const pressureMeasurement = document.querySelector('.pressure-measurement');
 
-const sunDiv = document.querySelector('.sun');
-
 function renderAll(data) {
     displayBasicInfo(data);
     displayForecast(data.forecast);
@@ -39,6 +37,9 @@ function displayBasicInfo(data) {
 }
 
 function displayForecast(data) {
+    // Clear previous data
+    forecastDiv.textContent = '';
+
     const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
     for (let i = 0; i < 7; i++) {
@@ -68,6 +69,8 @@ function displayForecast(data) {
 }
 
 function displayTimelapse(data) {
+    Manager.clearChart();
+
     const weeklyData = [];
 
     for (let i = 0; i < 7; i++) {
@@ -89,16 +92,15 @@ function displayTimelapse(data) {
     // console.log(timelapseData);
 
     const canvas = document.createElement('canvas');
-    canvas.id = 'timelapseChart';
+    canvas.id = 'myCanvas';
     canvas.style.width = '600';
     canvas.style.height = '200';
-
     timelapseDiv.appendChild(canvas);
 
     const labels = timelapseData.map(data => data.time);
     const values = timelapseData.map(data => data.value);
 
-    const ctx = document.getElementById('timelapseChart').getContext('2d');
+    const ctx = document.getElementById('myCanvas').getContext('2d');    
 
     const timelapseChart = new Chart(ctx, {
         type: 'line', // or 'bar' or 'area' if you customize
@@ -135,6 +137,8 @@ function displayTimelapse(data) {
             maintainAspectRatio: false
         }
     });
+
+    Manager.setCurrentChart(timelapseChart);
 
 }
 

@@ -6,11 +6,6 @@ import { searchSubmitHandler } from './handlers.js';
 
 const searchForm = document.querySelector('#search-form');
 
-console.log('Hello');
-
-
-
-
 function bindEvents() {
     searchForm.addEventListener('submit', searchSubmitHandler);
     
