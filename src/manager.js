@@ -1,36 +1,37 @@
-import * as UI from './userInterface';
-
 let currentChart = null;
 
 export async function retrieveWeatherData(location) {
     const url = `https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/${location}?unitGroup=us&key=5CY3SLBHNE3ER7M9DNMNQ6TXB&contentType=json`;
 
-    const response = await fetch(url, { mode: 'cors' });
-    const data = await response.json();
+    try {
+        const response = await fetch(url, { mode: 'cors' });
+        const data = await response.json();
 
-    console.log(data);
-
-
-    // Returns an object with only the relevant information from the API call
-    return {
-        location: formatLocation(data.resolvedAddress),
-        temperature: data.currentConditions.temp,
-        description: data.description,
-        forecast: data.days,
-        timelapse: data.days,
-        humidity: data.currentConditions.humidity,
-        wind: {
-            speed: data.currentConditions.windspeed,
-            direction: data.currentConditions.winddir
-        },
-        pressure: data.currentConditions.pressure,
-        uv: data.currentConditions.uvindex,
-        sun: {
-            time: data.currentConditions.datetime,
-            sunrise: data.currentConditions.sunrise,
-            sunset: data.currentConditions.sunset,
+        // Returns an object with only the relevant information from the API call
+        return {
+            location: formatLocation(data.resolvedAddress),
+            temperature: data.currentConditions.temp,
+            description: data.description,
+            forecast: data.days,
+            timelapse: data.days,
+            humidity: data.currentConditions.humidity,
+            wind: {
+                speed: data.currentConditions.windspeed,
+                direction: data.currentConditions.winddir
+            },
+            pressure: data.currentConditions.pressure,
+            uv: data.currentConditions.uvindex,
+            sun: {
+                time: data.currentConditions.datetime,
+                sunrise: data.currentConditions.sunrise,
+                sunset: data.currentConditions.sunset,
+            }
         }
+
+    } catch (error) {
+        console.log(error);
     }
+
 }
 
 export function extractCityFromAddress(address) {
@@ -107,3 +108,7 @@ export function clearChart() {
 export function setCurrentChart(chart) {
     currentChart = chart;
 }
+
+export function delay(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+} 
