@@ -17,10 +17,19 @@
             <!-- <source src="./backdrops/Sunny.mp4" type="video/mp4" > -->
         </video>
 
-        <form id="search-form">
-            <input type="search" id="search-input" placeholder="Search for a place ...">
-            <button type="submit" id="search-btn">🔍</button>
-        </form>
+        <div class="nav-bar">
+            <form id="search-form">
+                <input type="search" id="search-input" placeholder="Search for a place ...">
+                <button type="submit" id="search-btn">🔍</button>
+            </form>
+
+            <div class="switch-degrees">
+                <input type="checkbox" id="switch-degrees-btn">
+                <div class="temperature-display">C</div>
+            </div>
+        </div>
+
+
 
         <div class="basic-info">
             <div class="location"></div>
@@ -40,7 +49,8 @@
                 <div class="headings">
                     Humidity
                 </div>
-                <svg class="humidity-ring" viewBox="0 0 120 120" preserveAspectRatio="xMidYMid meet" width="80" height="80">
+                <svg class="humidity-ring" viewBox="0 0 120 120" preserveAspectRatio="xMidYMid meet" width="80"
+                    height="80">
                     <circle class="humidity-bg-ring" cx="60" cy="60" r="50" />
                     <circle class="humidity-progress-ring" cx="60" cy="60" r="50" />
                 </svg>
@@ -55,7 +65,8 @@
 
                 <div class="wind-svg-container">
                     <span class="wind-speed"></span>
-                    <svg class="wind-ring" viewBox="0 0 120 120" preserveAspectRatio="xMidYMid meet" width="80" height="80">
+                    <svg class="wind-ring" viewBox="0 0 120 120" preserveAspectRatio="xMidYMid meet" width="80"
+                        height="80">
                         <circle class="wind-bg-ring" cx="60" cy="60" r="50" />
                         <circle class="wind-progress-ring" cx="60" cy="60" r="50" />
                     </svg>

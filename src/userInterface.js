@@ -55,14 +55,23 @@ function displayForecast(data) {
         div.classList.add('forecast-days');
         div.dataset.day = currentDay;
 
-        const daySpan = document.createElement('span');
-        daySpan.innerHTML = currentDay;
+        const leftDiv = document.createElement('span');
+        leftDiv.innerHTML = currentDay;
+
+        const rightDiv = document.createElement('div');
+        rightDiv.classList.add('icon-value');
+
+        const iconSpan = document.createElement('span');
+        iconSpan.classList.add('icon-span');
 
         const tempSpan = document.createElement('span');
+        tempSpan.classList.add('temp-span');
         tempSpan.innerHTML = currentTemp;
 
-        div.append(daySpan);
-        div.append(tempSpan);
+        rightDiv.append(iconSpan);
+        rightDiv.append(tempSpan);
+        div.append(leftDiv);
+        div.append(rightDiv);
 
         forecastDiv.appendChild(div);
     }
