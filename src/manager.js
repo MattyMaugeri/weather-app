@@ -1,3 +1,7 @@
+import Overcast from './backdrops/Overcast.mp4';
+import Rainy from './backdrops/Rainy.mp4';
+import Sunny from './backdrops/Sunny.mp4';
+
 let currentChart = null;
 
 export async function retrieveWeatherData(location) {
@@ -7,7 +11,7 @@ export async function retrieveWeatherData(location) {
         const response = await fetch(url, { mode: 'cors' });
         const data = await response.json();
         console.log(data);
-        
+
 
         // Returns an object with only the relevant information from the API call
         return {
@@ -27,7 +31,8 @@ export async function retrieveWeatherData(location) {
                 time: data.currentConditions.datetime,
                 sunrise: data.currentConditions.sunrise,
                 sunset: data.currentConditions.sunset,
-            }
+            },
+            icon: data.currentConditions.icon
         }
 
     } catch (error) {
@@ -113,7 +118,7 @@ export function setCurrentChart(chart) {
 
 export function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-} 
+}
 
 export function convertToCelsius(fahrenheit) {
     return Math.round((fahrenheit - 32) * 5 / 9);
@@ -121,4 +126,22 @@ export function convertToCelsius(fahrenheit) {
 
 export function convertToFahrenheit(celsius) {
     return Math.round((celsius * 9 / 5) + 32);
+}
+
+export function changeVideoSource(icon) {
+
+    switch (icon) {
+        case 'partly-cloudy-day':
+            console.log('Cloudy day!');
+            return Overcast;
+        case 'clear-day':
+            console.log('Clear Sunny Day!');
+            return Sunny;
+        case 'rain':
+            return Rainy;
+        default:
+            console.log('Default day!');
+            return Overcast;
+    }
+
 }

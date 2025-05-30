@@ -1,6 +1,7 @@
 import * as Manager from './manager.js';
 import Chart from 'chart.js/auto';
 
+
 // Basic Info Elements
 const locationDiv = document.querySelector('.location');
 const temperatureDiv = document.querySelector('.temperature-value');
@@ -22,6 +23,7 @@ function renderAll(data) {
     displayPressure(data.pressure);
     displayUV(data.uv);
     displaySunrise(data.sun);
+    updateBackdropDisplay(data.icon)
 
 }
 
@@ -281,5 +283,20 @@ function updateForecastTempDisplays(value) {
 
 }
 
+function updateBackdropDisplay(icon) {
+    const video = document.querySelector('.background-video');
+    const source = document.getElementById('video-source');
+    
+    const newSource = Manager.changeVideoSource(icon);
 
-export { renderAll, toggleTempBtn }
+    console.log(newSource);
+    
+
+
+    source.src = newSource;
+    video.load();
+    video.play();
+
+}
+
+export { renderAll, toggleTempBtn, updateBackdropDisplay }

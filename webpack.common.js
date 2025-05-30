@@ -24,6 +24,10 @@ module.exports = {
                 test: /\.html$/i,
                 loader: 'html-loader',
             },
+            {
+                test: /\.mp4$/,
+                type: 'asset/resource',
+            },
         ],
     },
     plugins: [

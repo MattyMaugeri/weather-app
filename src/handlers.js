@@ -13,7 +13,6 @@ export async function searchSubmitHandler(e) {
 
     try {
         const data = await retrieveWeatherData(searchValue);
-        console.log(data);
 
         // Delay function to allow loading screen
         await delay(700);
