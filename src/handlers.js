@@ -1,5 +1,5 @@
 import { retrieveWeatherData, delay } from "./manager.js";
-import { renderAll, toggleCelsiusDisplay } from "./userInterface.js";
+import { renderAll, toggleTempBtn } from "./userInterface.js";
 
 const searchForm = document.querySelector('#search-form');
 const overlay = document.getElementById('loading-overlay');
@@ -30,11 +30,10 @@ export async function searchSubmitHandler(e) {
 
 export function toggleTemperatureHandler (e) {
     if (e.target.checked) {
-        toggleCelsiusDisplay(true);
-    } else {
-        toggleCelsiusDisplay(false);
-    }
+        toggleTempBtn(true);
 
-    // 
+    } else {
+        toggleTempBtn(false);
+    }
     
 }

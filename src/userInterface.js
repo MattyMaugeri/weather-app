@@ -3,7 +3,7 @@ import Chart from 'chart.js/auto';
 
 // Basic Info Elements
 const locationDiv = document.querySelector('.location');
-const temperatureDiv = document.querySelector('.temperature');
+const temperatureDiv = document.querySelector('.temperature-value');
 const descriptionDiv = document.querySelector('.description');
 
 // Detailed Content
@@ -223,13 +223,9 @@ function displaySunrise(data) {
 
 }
 
-function toggleCelsiusDisplay(value) {
+function toggleTempBtn(value) {
     const tempBtn = document.querySelector('.temperature-display');
     tempBtn.innerHTML = '';
-
-    const basicInfoTempDiv = document.querySelector('.temperature');
-    const basicInfoTempValue = Number(basicInfoTempDiv.textContent);
-
 
     if (value) {
         tempBtn.innerHTML = `
@@ -237,18 +233,38 @@ function toggleCelsiusDisplay(value) {
     <path d="M16.5,5C18.05,5 19.5,5.47 20.69,6.28L19.53,9.17C18.73,8.44 17.67,8 16.5,8C14,8 12,10 12,12.5C12,15 14,17 16.5,17C17.53,17 18.47,16.66 19.23,16.08L20.37,18.93C19.24,19.61 17.92,20 16.5,20A7.5,7.5 0 0,1 9,12.5A7.5,7.5 0 0,1 16.5,5M6,3A3,3 0 0,1 9,6A3,3 0 0,1 6,9A3,3 0 0,1 3,6A3,3 0 0,1 6,3M6,5A1,1 0 0,0 5,6A1,1 0 0,0 6,7A1,1 0 0,0 7,6A1,1 0 0,0 6,5Z" />
     </svg>
     `;
-        basicInfoTempDiv.textContent = Manager.convertToCelsius(basicInfoTempValue);
     } else {
         tempBtn.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
     <path d="M11,20V5H20V8H14V11H19V14H14V20H11M6,3A3,3 0 0,1 9,6A3,3 0 0,1 6,9A3,3 0 0,1 3,6A3,3 0 0,1 6,3M6,5A1,1 0 0,0 5,6A1,1 0 0,0 6,7A1,1 0 0,0 7,6A1,1 0 0,0 6,5Z" />
     </svg>
     `;
-        basicInfoTempDiv.textContent = Manager.convertToFahrenheit(basicInfoTempValue);
     }
 
+    updateBasicInfoTempDisplays(value);
     updateForecastTempDisplays(value);
+}
 
+function updateBasicInfoTempDisplays(value) {
+    const tempDiv = document.querySelector('.temperature-value');
+    const tempValue = Number(tempDiv.textContent);
+    const tempIcon = document.querySelector('.temperature-icon');
+
+    if (value) {
+        tempDiv.textContent = Manager.convertToCelsius(tempValue);
+        tempIcon.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+    <path d="M16.5,5C18.05,5 19.5,5.47 20.69,6.28L19.53,9.17C18.73,8.44 17.67,8 16.5,8C14,8 12,10 12,12.5C12,15 14,17 16.5,17C17.53,17 18.47,16.66 19.23,16.08L20.37,18.93C19.24,19.61 17.92,20 16.5,20A7.5,7.5 0 0,1 9,12.5A7.5,7.5 0 0,1 16.5,5M6,3A3,3 0 0,1 9,6A3,3 0 0,1 6,9A3,3 0 0,1 3,6A3,3 0 0,1 6,3M6,5A1,1 0 0,0 5,6A1,1 0 0,0 6,7A1,1 0 0,0 7,6A1,1 0 0,0 6,5Z" />
+    </svg>
+        `;
+    } else {
+        tempDiv.textContent = Manager.convertToFahrenheit(tempValue);
+        tempIcon.innerHTML = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+    <path d="M11,20V5H20V8H14V11H19V14H14V20H11M6,3A3,3 0 0,1 9,6A3,3 0 0,1 6,9A3,3 0 0,1 3,6A3,3 0 0,1 6,3M6,5A1,1 0 0,0 5,6A1,1 0 0,0 6,7A1,1 0 0,0 7,6A1,1 0 0,0 6,5Z" />
+    </svg>
+    `;
+    }
 }
 
 function updateForecastTempDisplays(value) {
@@ -266,4 +282,4 @@ function updateForecastTempDisplays(value) {
 }
 
 
-export { renderAll, toggleCelsiusDisplay }
+export { renderAll, toggleTempBtn }

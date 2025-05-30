@@ -136,7 +136,15 @@ input:checked[type="checkbox"]::before {
     font-size: 16px;
 }
 
+.temperature {
+    display: flex;
+    position: relative;
+}
 
+.temperature-icon {
+    position: inherit;
+    top: 1px;
+}
 
 
 
