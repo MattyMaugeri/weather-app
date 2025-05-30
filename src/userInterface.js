@@ -45,10 +45,10 @@ function displayForecast(data) {
     for (let i = 0; i < 7; i++) {
         // Convert to Date object 
         const currentDate = new Date(data.at(i).datetime);
-        
+
         // Convert to day
         const currentDay = days[currentDate.getDay()];
-        const currentTemp = data.at(i).temp;
+        const currentTemp = Math.round(data.at(i).temp);
 
         // Create 7 divs inside forecast for each day
         const div = document.createElement('div');
@@ -109,10 +109,10 @@ function displayTimelapse(data) {
     const labels = timelapseData.map(data => data.time);
     const values = timelapseData.map(data => data.value);
 
-    const ctx = document.getElementById('myCanvas').getContext('2d');    
+    const ctx = document.getElementById('myCanvas').getContext('2d');
 
     const timelapseChart = new Chart(ctx, {
-        type: 'line', // or 'bar' or 'area' if you customize
+        type: 'line',
         data: {
             labels: labels,
             datasets: [{
@@ -120,9 +120,9 @@ function displayTimelapse(data) {
                 data: values,
                 borderColor: 'rgba(75, 192, 192, 1)',
                 backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                fill: true, // area under the line
-                pointRadius: 0, // smoother look
-                tension: 0.3    // smooth curves
+                fill: true,
+                pointRadius: 0,
+                tension: 0.3
             }]
         },
         options: {
@@ -130,7 +130,7 @@ function displayTimelapse(data) {
                 x: {
                     ticks: {
                         autoSkip: true,
-                        maxTicksLimit: 12 // reduces clutter
+                        maxTicksLimit: 12
                     }
                 },
                 y: {
@@ -223,5 +223,47 @@ function displaySunrise(data) {
 
 }
 
+function toggleCelsiusDisplay(value) {
+    const tempBtn = document.querySelector('.temperature-display');
+    tempBtn.innerHTML = '';
 
-export { displayBasicInfo, renderAll }
+    const basicInfoTempDiv = document.querySelector('.temperature');
+    const basicInfoTempValue = Number(basicInfoTempDiv.textContent);
+
+
+    if (value) {
+        tempBtn.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+    <path d="M16.5,5C18.05,5 19.5,5.47 20.69,6.28L19.53,9.17C18.73,8.44 17.67,8 16.5,8C14,8 12,10 12,12.5C12,15 14,17 16.5,17C17.53,17 18.47,16.66 19.23,16.08L20.37,18.93C19.24,19.61 17.92,20 16.5,20A7.5,7.5 0 0,1 9,12.5A7.5,7.5 0 0,1 16.5,5M6,3A3,3 0 0,1 9,6A3,3 0 0,1 6,9A3,3 0 0,1 3,6A3,3 0 0,1 6,3M6,5A1,1 0 0,0 5,6A1,1 0 0,0 6,7A1,1 0 0,0 7,6A1,1 0 0,0 6,5Z" />
+    </svg>
+    `;
+        basicInfoTempDiv.textContent = Manager.convertToCelsius(basicInfoTempValue);
+    } else {
+        tempBtn.innerHTML = `
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+    <path d="M11,20V5H20V8H14V11H19V14H14V20H11M6,3A3,3 0 0,1 9,6A3,3 0 0,1 6,9A3,3 0 0,1 3,6A3,3 0 0,1 6,3M6,5A1,1 0 0,0 5,6A1,1 0 0,0 6,7A1,1 0 0,0 7,6A1,1 0 0,0 6,5Z" />
+    </svg>
+    `;
+        basicInfoTempDiv.textContent = Manager.convertToFahrenheit(basicInfoTempValue);
+    }
+
+    updateForecastTempDisplays(value);
+
+}
+
+function updateForecastTempDisplays(value) {
+    const forecastTempSpans = document.querySelectorAll('.temp-span');
+
+    forecastTempSpans.forEach(span => {
+        const tempValue = Number(span.textContent);
+        if (value) {
+            span.textContent = Manager.convertToCelsius(tempValue);
+        } else {
+            span.textContent = Manager.convertToFahrenheit(tempValue);
+        }
+    })
+
+}
+
+
+export { renderAll, toggleCelsiusDisplay }

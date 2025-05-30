@@ -6,11 +6,13 @@ export async function retrieveWeatherData(location) {
     try {
         const response = await fetch(url, { mode: 'cors' });
         const data = await response.json();
+        console.log(data);
+        
 
         // Returns an object with only the relevant information from the API call
         return {
             location: formatLocation(data.resolvedAddress),
-            temperature: data.currentConditions.temp,
+            temperature: Math.round(data.days[0].temp),
             description: data.description,
             forecast: data.days,
             timelapse: data.days,
@@ -112,3 +114,11 @@ export function setCurrentChart(chart) {
 export function delay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 } 
+
+export function convertToCelsius(fahrenheit) {
+    return Math.round((fahrenheit - 32) * 5 / 9);
+}
+
+export function convertToFahrenheit(celsius) {
+    return Math.round((celsius * 9 / 5) + 32);
+}
