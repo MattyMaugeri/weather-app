@@ -143,12 +143,30 @@ function displayTimelapse(data) {
             scales: {
                 x: {
                     ticks: {
+                        color: 'white',
                         autoSkip: true,
-                        maxTicksLimit: 12
+                        maxTicksLimit: 12,
+                        font: {
+                            size: 12,
+                            weight: '100'
+                        },
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
                     }
                 },
                 y: {
-                    beginAtZero: false
+                    beginAtZero: false,
+                    ticks: {
+                        color: 'white',
+                        font: {
+                            size: 12,
+                            weight: '100'
+                        }
+                    },
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.1)'
+                    }
                 }
             },
             plugins: {
@@ -320,10 +338,6 @@ function updateBackdropDisplay(icon) {
     const source = document.getElementById('video-source');
 
     const newSource = Manager.changeVideoSource(icon);
-
-    console.log(newSource);
-
-
 
     source.src = newSource;
     video.load();

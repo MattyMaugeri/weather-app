@@ -132,15 +132,12 @@ export function changeVideoSource(icon) {
 
     switch (icon) {
         case 'partly-cloudy-day':
-            console.log('Cloudy day!');
             return Overcast;
         case 'clear-day':
-            console.log('Clear Sunny Day!');
             return Sunny;
         case 'rain':
             return Rainy;
         default:
-            console.log('Default day!');
             return Overcast;
     }
 
