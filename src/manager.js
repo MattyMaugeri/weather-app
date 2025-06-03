@@ -1,6 +1,7 @@
 import Overcast from './backdrops/Overcast.mp4';
 import Rainy from './backdrops/Rainy.mp4';
 import Sunny from './backdrops/Sunny.mp4';
+import PartlyCloudy from './backdrops/PartlyCloudy.mp4';
 
 let currentChart = null;
 
@@ -131,12 +132,14 @@ export function convertToFahrenheit(celsius) {
 export function changeVideoSource(icon) {
 
     switch (icon) {
-        case 'partly-cloudy-day':
+        case 'cloudy':
             return Overcast;
         case 'clear-day':
             return Sunny;
         case 'rain':
             return Rainy;
+        case 'partly-cloudy-day':
+            return PartlyCloudy;
         default:
             return Overcast;
     }
